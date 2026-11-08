@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة التقويم المدرسي الخارجي | ثانوية نعام (بنين) - مسارات</title>
+  <title>بوابة التقويم المدرسي الخارجي | مجمع مدارس نعام (الابتدائية - المتوسطة - الثانوية)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
@@ -12,7 +12,7 @@
     .glass-card:hover { border-color: #0d9488; box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.08); }
     .watermark {
       position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-      pointer-events: none; opacity: 0.05; font-size: 2.2rem; font-weight: 900;
+      pointer-events: none; opacity: 0.05; font-size: 2.1rem; font-weight: 900;
       transform: rotate(-25deg); z-index: 20; color: #0f766e; text-align: center;
       user-select: none; line-height: 1.6;
     }
@@ -31,13 +31,14 @@
           وزارة التعليم - الإدارة العامة للتعليم بمنطقة الرياض
         </span>
         <h1 class="text-2xl font-black text-slate-900 mt-3">بوابة الشواهد الرقمية</h1>
-        <p class="text-sm text-slate-500 mt-1 font-medium">ثانوية نعام (بنين) - مسارات | الرقم الوزاري: S-M115007</p>
+        <p class="text-sm text-teal-800 font-extrabold mt-1">مجمع مدارس نعام (الابتدائية - المتوسطة - الثانوية)</p>
+        <p class="text-xs text-slate-500 mt-1 font-medium">بنين | الرقم الوزاري: S-M115007</p>
       </div>
 
       <form id="login-form" class="space-y-4">
         <div>
           <label for="access-code" class="block text-xs font-bold text-slate-700 mb-2">
-            أدخل رمز التصريح الأمني للوصول إلى الشواهد:
+            أدخل رمز التصريح الأمني للوصول إلى شواهد المجمع:
           </label>
           <div class="relative">
             <input
@@ -67,12 +68,12 @@
           <span>تحقق واستعراض الشواهد</span>
         </button>
 
-        <div id="login-error" class="bg-red-50 border border-red-200 text-red-700 text-xs text-center p-3 rounded-xl hidden font-bold"></div>
+        <div id="login-error" class="bg-red-50 border border-red-200 text-red-700 text-xs text-center p-3 rounded-xl hidden font-bold leading-relaxed"></div>
       </form>
 
       <div class="mt-6 pt-5 border-t border-slate-100 text-center">
         <p class="text-[11px] text-slate-400 leading-relaxed">
-          جميع الوثائق والشواهد المدرجة في هذه البوابة مصنفة ومحمية بموجب نظام حماية البيانات الشخصية السعودي (PDPL) ومخصصة لأغراض التقويم والاعتماد المدرسي.
+          جميع الوثائق والشواهد المدرجة في هذه البوابة مصنفة ومحمية بموجب نظام حماية البيانات الشخصية السعودي (PDPL) ومخصصة لأغراض التقويم والاعتماد المدرسي لمجمع مدارس نعام.
         </p>
       </div>
     </div>
@@ -86,8 +87,13 @@
         <div class="flex items-center gap-3">
           <div class="bg-teal-600 text-white px-3.5 py-2 rounded-xl font-black text-lg">نعام</div>
           <div>
-            <h1 class="font-extrabold text-base md:text-lg">ثانوية نعام (بنين) - نظام المسارات</h1>
-            <p class="text-xs text-slate-400">الرقم الوزاري: S-M115007 | بوابة شواهد التقويم الخارجي المعتمدة</p>
+            <div class="flex flex-wrap items-center gap-2">
+              <h1 class="font-extrabold text-base md:text-lg">مجمع مدارس نعام للبنين</h1>
+              <span class="bg-teal-900/80 text-teal-300 border border-teal-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                الابتدائية • المتوسطة • الثانوية
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">الرقم الوزاري: S-M115007 | بوابة شواهد التقويم المدرسي الخارجي المعتمدة</p>
           </div>
         </div>
         <div class="flex items-center gap-2.5">
@@ -110,7 +116,7 @@
       <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
         <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/70">
           <div id="stat-total-ind" class="text-2xl font-black text-slate-900">45</div>
-          <div class="text-xs text-slate-500 font-bold mt-1">إجمالي المؤشرات المعتمدة</div>
+          <div class="text-xs text-slate-500 font-bold mt-1">إجمالي المؤشرات المعتمدة للمجمع</div>
         </div>
         <div class="bg-emerald-50/60 p-4 rounded-2xl border border-emerald-200/70">
           <div id="stat-completed" class="text-2xl font-black text-emerald-700">45 (100%)</div>
@@ -132,7 +138,7 @@
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center mb-4">
           <div>
-            <h2 class="font-bold text-base text-teal-400">خريطة التغطية الحرارية السريعة (45 مؤشراً)</h2>
+            <h2 class="font-bold text-base text-teal-400">خريطة التغطية الحرارية لمؤشرات المجمع (45 مؤشراً)</h2>
             <p class="text-xs text-slate-400">اضغط على رقم أي مؤشر للانتقال الفوري إلى بطاقته وشواهده</p>
           </div>
           <button onclick="toggleHeatmap()" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white">إخفاء الخريطة ✕</button>
@@ -141,11 +147,11 @@
       </div>
     </section>
 
-    <!-- لوحة فحص الجودة للإدارة (تظهر لرمز المدير فقط) -->
+    <!-- لوحة فحص الجودة للإدارة -->
     <section id="admin-section" class="hidden bg-amber-50 border-b border-amber-200 py-6">
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center mb-3">
-          <h2 class="font-black text-base text-amber-900">لوحة الفحص الإداري وضبط الجودة (خاصة بمدير النظام)</h2>
+          <h2 class="font-black text-base text-amber-900">لوحة الفحص الإداري وضبط الجودة - مجمع مدارس نعام</h2>
           <button onclick="toggleAdminPanel()" class="text-xs bg-amber-200/60 px-3 py-1 rounded-lg text-amber-900 font-bold">إغلاق</button>
         </div>
         <div id="admin-report" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs"></div>
@@ -185,7 +191,7 @@
         <div class="bg-slate-900 text-white px-5 py-3.5 flex flex-wrap justify-between items-center gap-3">
           <div>
             <h3 id="modal-title" class="font-bold text-sm md:text-base text-teal-300">معاينة وثيقة الشاهد</h3>
-            <p id="modal-subtitle" class="text-[11px] text-slate-400 mt-0.5">ثانوية نعام (بنين) - مسارات | الرقم الوزاري: S-M115007</p>
+            <p id="modal-subtitle" class="text-[11px] text-slate-400 mt-0.5">مجمع مدارس نعام (الابتدائية - المتوسطة - الثانوية) | الرقم الوزاري: S-M115007</p>
           </div>
           <div class="flex items-center gap-2.5">
             <a id="modal-external-link" href="#" target="_blank" rel="noopener noreferrer" class="bg-teal-700 hover:bg-teal-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition">
@@ -230,7 +236,7 @@
 
       errDiv.classList.add('hidden');
       btn.disabled = true;
-      btn.innerHTML = '<span>جاري التحقق وتحميل المؤشرات...</span>';
+      btn.innerHTML = '<span>جاري التحقق وتحميل شواهد المجمع...</span>';
 
       try {
         const res = await fetch(`/api/data?code=${encodeURIComponent(code)}`);
@@ -268,7 +274,6 @@
       }
     });
 
-    // تجميع الشواهد المتعددة التي تشترك في نفس رقم المؤشر داخل بطاقة واحدة
     function processAndGroupIndicators(rawRows) {
       const map = new Map();
       let totalFiles = 0;
@@ -344,7 +349,7 @@
       document.getElementById('admin-report').innerHTML = `
         <div class="bg-white p-4 rounded-xl border border-amber-200">
           <div class="font-bold text-slate-800 mb-1">المؤشرات غير المكتملة (${missingEv.length})</div>
-          <p class="text-slate-500">${missingEv.length === 0 ? 'جميع الـ 45 مؤشراً مكتملة ومربوطة بملفات فعالة.' : missingEv.map(m => m.code).join(' ، ')}</p>
+          <p class="text-slate-500">${missingEv.length === 0 ? 'جميع الـ 45 مؤشراً للمجمع مكتملة ومربوطة بملفات فعالة.' : missingEv.map(m => m.code).join(' ، ')}</p>
         </div>
         <div class="bg-white p-4 rounded-xl border border-amber-200">
           <div class="font-bold text-slate-800 mb-1">مؤشرات بمرحلة التقدم تحتاج دعم للتميز (${lowScore.length})</div>
@@ -471,7 +476,7 @@
       }
 
       document.getElementById('modal-title').innerText = title;
-      document.getElementById('modal-watermark').innerHTML = `ثانوية نعام (S-M115007)<br>${currentUser ? currentUser.name : 'لجنة التقويم الخارجي'}`;
+      document.getElementById('modal-watermark').innerHTML = `مجمع مدارس نعام (S-M115007)<br>${currentUser ? currentUser.name : 'لجنة التقويم الخارجي'}`;
       document.getElementById('modal-external-link').href = url;
       document.getElementById('modal-iframe').src = embedUrl;
 
@@ -487,7 +492,6 @@
       modal.classList.remove('flex');
     }
 
-    // دعم فتح المؤشر مباشرة عبر رموز QR الميدانية (?ind=4-2-1-1)
     function checkUrlParams() {
       const params = new URLSearchParams(window.location.search);
       const ind = params.get('ind');
