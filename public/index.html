@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بوابة التقويم المدرسي الخارجي - ثانوية نعام (مسارات)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap');
+    body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #1e293b; }
+    .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(226, 232, 240, 0.8); }
+    .watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: 0.04; font-size: 3rem; font-weight: 900; transform: rotate(-30deg); z-index: 10; color: #0f766e; text-align: center; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- شاشة الدخول الأمني -->
+  <div id="login-screen" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 border border-slate-100">
+      <div class="text-center mb-6">
+        <div class="bg-teal-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 text-teal-700 font-bold text-2xl">🏫</div>
+        <h1 class="text-2xl font-black text-slate-900">بوابة الشواهد الرقمية</h1>
+        <p class="text-sm text-slate-500 mt-1">ثانوية نعام (بنين) - مسارات | الرقم الوزاري: S-M115007</p>
+      </div>
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">رمز الدخول المخصص للزيارة:</label>
+          <input type="text" id="access-code" required placeholder="مثال: ETEC-2026-V1" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-600 focus:outline-none text-center tracking-widest font-mono text-lg uppercase">
+        </div>
+        <button type="submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-teal-700/20">
+          تسجيل الدخول واستعراض الشواهد 🔓
+        </button>
+        <div id="login-error" class="text-red-500 text-xs text-center hidden font-bold"></div>
+      </form>
+      <p class="text-xs text-slate-400 text-center mt-6">جميع الوثائق محمية وتخضع لنظام حماية البيانات الشخصية السعودي.</p>
+    </div>
+  </div>
+
+  <!-- المحتوى الرئيسي للموقع -->
+  <div id="main-app" class="hidden flex-col min-h-screen">
+    <!-- ترويسة رئيسية -->
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-30">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+          <div class="bg-teal-600 text-white p-2.5 rounded-xl font-black text-xl">نعام</div>
+          <div>
+            <h1 class="font-bold text-lg">ثانوية نعام (بنين) - مسارات</h1>
+            <p class="text-xs text-slate-400">الرقم الوزاري: S-M115007 | دورة التقويم الثانية</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div id="user-badge" class="bg-slate-800 px-3 py-1.5 rounded-lg text-xs font-bold text-teal-400 border border-slate-700"></div>
+          <button onclick="logout()" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 px-3 py-1.5 rounded-lg text-xs font-bold transition">خروج 🔒</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- لوحة إحصائية سريعة -->
+    <section class="bg-white border-b border-slate-200 py-6">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div class="text-2xl font-black text-teal-700">45</div>
+          <div class="text-xs text-slate-500 font-bold mt-1">إجمالي المؤشرات الرسمية</div>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div id="stat-completed" class="text-2xl font-black text-emerald-600">45</div>
+          <div class="text-xs text-slate-500 font-bold mt-1">الشواهد المكتملة (100%)</div>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div class="text-2xl font-black text-blue-600">88% ⬅ 90%+</div>
+          <div class="text-xs text-slate-500 font-bold mt-1">التقويم الذاتي (المستهدف: التميز)</div>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div class="text-2xl font-black text-amber-600">4 مجالات</div>
+          <div class="text-xs text-slate-500 font-bold mt-1">و 11 معياراً معتمداً</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- شريط البحث والفلاتر -->
+    <section class="max-w-7xl mx-auto px-4 py-6 w-full">
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="w-full md:w-96">
+          <input type="text" id="search-input" oninput="filterData()" placeholder="🔍 ابحث برقم المؤشر أو الكلمة (رخصة، موهوبين...)" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-600 focus:outline-none text-sm bg-white">
+        </div>
+        <div id="filter-tabs" class="flex flex-wrap gap-2 w-full md:w-auto">
+          <button onclick="setDomainFilter('الكل')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-teal-700 text-white transition shadow-sm">الكل (45)</button>
+          <button onclick="setDomainFilter('الإدارة المدرسية')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">الإدارة المدرسية</button>
+          <button onclick="setDomainFilter('التعليم والتعلم')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">التعليم والتعلم</button>
+          <button onclick="setDomainFilter('نواتج التعلم')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">نواتج التعلم</button>
+          <button onclick="setDomainFilter('البيئة المدرسية')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">البيئة المدرسية</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- بطاقات المؤشرات -->
+    <main class="max-w-7xl mx-auto px-4 pb-16 flex-grow w-full">
+      <div id="indicators-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- يتم تعبئتها برمجياً -->
+      </div>
+    </main>
+
+    <!-- نافذة المعاينة المدمجة (Modal) -->
+    <div id="preview-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 md:p-6">
+      <div class="bg-white w-full max-w-6xl h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden relative border border-slate-200">
+        <!-- ترويسة النافذة -->
+        <div class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center">
+          <div>
+            <h3 id="modal-title" class="font-bold text-lg">معاينة الشاهد</h3>
+            <p id="modal-subtitle" class="text-xs text-slate-400 mt-0.5">ثانوية نعام - نظام التقويم الخارجي</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <a id="modal-external-link" href="#" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-teal-400 px-3 py-1.5 rounded-lg text-xs font-bold transition border border-slate-700">فتح بنافذة مستقلة ↗</a>
+            <button onclick="closeModal()" class="bg-red-500/20 hover:bg-red-500/30 text-red-400 w-8 h-8 rounded-lg font-bold flex items-center justify-center transition">✕</button>
+          </div>
+        </div>
+        <!-- منطقة العرض -->
+        <div class="flex-grow bg-slate-100 relative flex items-center justify-center overflow-hidden">
+          <div class="watermark" id="modal-watermark">ثانوية نعام - لجنة التقويم الخارجي</div>
+          <iframe id="modal-iframe" src="" class="w-full h-full border-0 relative z-0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let globalData = [];
+    let currentCode = '';
+    let activeDomain = 'الكل';
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const code = document.getElementById('access-code').value.trim();
+      const errDiv = document.getElementById('login-error');
+      errDiv.classList.add('hidden');
+
+      try {
+        const res = await fetch(`/api/data?code=${encodeURIComponent(code)}`);
+        const json = await res.json();
+        if (res.ok && json.success) {
+          currentCode = code;
+          globalData = json.indicators;
+          document.getElementById('login-screen').classList.add('hidden');
+          document.getElementById('main-app').classList.remove('flex');
+          document.getElementById('main-app').style.display = 'flex';
+          document.getElementById('user-badge').innerText = `${json.user.name} (${json.user.role})`;
+          renderIndicators(globalData);
+        } else {
+          errDiv.innerText = json.error || 'رمز الدخول غير صالح.';
+          errDiv.classList.remove('hidden');
+        }
+      } catch (err) {
+        errDiv.innerText = 'حدث خطأ في الاتصال بالخادم.';
+        errDiv.classList.remove('hidden');
+      }
+    });
+
+    function logout() {
+      location.reload();
+    }
+
+    function setDomainFilter(domain) {
+      activeDomain = domain;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if(btn.innerText.includes(domain)) {
+          btn.className = "filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-teal-700 text-white transition shadow-sm";
+        } else {
+          btn.className = "filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition";
+        }
+      });
+      filterData();
+    }
+
+    function filterData() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      const filtered = globalData.filter(item => {
+        const matchDomain = (activeDomain === 'الكل' || item.المجال === activeDomain);
+        const matchQ = (item.رقم_المؤشر.toLowerCase().includes(q) || item.نص_المؤشر.toLowerCase().includes(q) || item.المعيار.toLowerCase().includes(q) || item.اسم_الشاهد.toLowerCase().includes(q));
+        return matchDomain && matchQ;
+      });
+      renderIndicators(filtered);
+    }
+
+    function renderIndicators(data) {
+      const grid = document.getElementById('indicators-grid');
+      grid.innerHTML = '';
+      if(data.length === 0) {
+        grid.innerHTML = '<div class="col-span-2 text-center py-12 text-slate-400 font-bold">لا توجد مؤشرات تطابق بحثك.</div>';
+        return;
+      }
+
+      data.forEach(item => {
+        const badgeColor = item.مستوى_الأداء_الحالي === 'التميز' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-blue-50 text-blue-700 border-blue-200';
+        const card = document.createElement('div');
+        card.className = "glass-card rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition";
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start gap-2 mb-3">
+              <span class="bg-slate-900 text-white px-3 py-1 rounded-lg text-xs font-mono font-bold">${item.رقم_المؤشر}</span>
+              <span class="border px-2.5 py-0.5 rounded-md text-xs font-bold ${badgeColor}">${item.مستوى_الأداء_الحالي} (${item.نسبة_التقويم_الذاتي})</span>
+            </div>
+            <div class="text-xs font-bold text-teal-700 mb-1">${item.المجال} ‹ ${item.المعيار}</div>
+            <h3 class="font-bold text-slate-900 text-sm leading-relaxed mb-3">${item.نص_المؤشر}</h3>
+            <p class="text-xs text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">💡 <strong>يثبت الشاهد:</strong> ${item.ماذا_يثبت_الشاهد}</p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-bold">📁 ${item.اسم_الشاهد}</span>
+            <button onclick="openPreview('${item.رابط_الشاهد}', '${item.رقم_المؤشر} - ${item.اسم_الشاهد}')" class="bg-teal-700 hover:bg-teal-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">
+              استعراض الشاهد 📄
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openPreview(url, title) {
+      if(!url) {
+        alert('رابط الشاهد غير متوفر حالياً.');
+        return;
+      }
+      let embedUrl = url;
+      if (url.includes('drive.google.com')) {
+        embedUrl = url.replace('/view', '/preview').replace('/edit', '/preview');
+      }
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-watermark').innerText = `ثانوية نعام - رمز الدخول: ${currentCode}`;
+      document.getElementById('modal-external-link.href') = url;
+      document.getElementById('modal-iframe').src = embedUrl;
+      document.getElementById('preview-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-iframe').src = '';
+      document.getElementById('preview-modal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
