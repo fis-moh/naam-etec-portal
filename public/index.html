@@ -38,7 +38,6 @@
 
   <!-- المحتوى الرئيسي للموقع -->
   <div id="main-app" class="hidden flex-col min-h-screen">
-    <!-- ترويسة رئيسية -->
     <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-30">
       <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-3">
@@ -55,7 +54,6 @@
       </div>
     </header>
 
-    <!-- لوحة إحصائية سريعة -->
     <section class="bg-white border-b border-slate-200 py-6">
       <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
         <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
@@ -77,11 +75,10 @@
       </div>
     </section>
 
-    <!-- شريط البحث والفلاتر -->
     <section class="max-w-7xl mx-auto px-4 py-6 w-full">
       <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
         <div class="w-full md:w-96">
-          <input type="text" id="search-input" oninput="filterData()" placeholder="🔍 ابحث برقم المؤشر أو الكلمة (رخصة، موهوبين...)" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-600 focus:outline-none text-sm bg-white">
+          <input type="text" id="search-input" oninput="filterData()" placeholder="🔍 ابحث برقم المؤشر أو الكلمة..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-600 focus:outline-none text-sm bg-white">
         </div>
         <div id="filter-tabs" class="flex flex-wrap gap-2 w-full md:w-auto">
           <button onclick="setDomainFilter('الكل')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-teal-700 text-white transition shadow-sm">الكل (45)</button>
@@ -93,28 +90,22 @@
       </div>
     </section>
 
-    <!-- بطاقات المؤشرات -->
     <main class="max-w-7xl mx-auto px-4 pb-16 flex-grow w-full">
-      <div id="indicators-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- يتم تعبئتها برمجياً -->
-      </div>
+      <div id="indicators-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
     </main>
 
-    <!-- نافذة المعاينة المدمجة (Modal) -->
     <div id="preview-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 md:p-6">
       <div class="bg-white w-full max-w-6xl h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden relative border border-slate-200">
-        <!-- ترويسة النافذة -->
         <div class="bg-slate-900 text-white px-6 py-4 flex justify-between items-center">
           <div>
             <h3 id="modal-title" class="font-bold text-lg">معاينة الشاهد</h3>
-            <p id="modal-subtitle" class="text-xs text-slate-400 mt-0.5">ثانوية نعام - نظام التقويم الخارجي</p>
+            <p class="text-xs text-slate-400 mt-0.5">ثانوية نعام - نظام التقويم الخارجي</p>
           </div>
           <div class="flex items-center gap-3">
             <a id="modal-external-link" href="#" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-teal-400 px-3 py-1.5 rounded-lg text-xs font-bold transition border border-slate-700">فتح بنافذة مستقلة ↗</a>
             <button onclick="closeModal()" class="bg-red-500/20 hover:bg-red-500/30 text-red-400 w-8 h-8 rounded-lg font-bold flex items-center justify-center transition">✕</button>
           </div>
         </div>
-        <!-- منطقة العرض -->
         <div class="flex-grow bg-slate-100 relative flex items-center justify-center overflow-hidden">
           <div class="watermark" id="modal-watermark">ثانوية نعام - لجنة التقويم الخارجي</div>
           <iframe id="modal-iframe" src="" class="w-full h-full border-0 relative z-0"></iframe>
@@ -141,7 +132,6 @@
           currentCode = code;
           globalData = json.indicators;
           document.getElementById('login-screen').classList.add('hidden');
-          document.getElementById('main-app').classList.remove('flex');
           document.getElementById('main-app').style.display = 'flex';
           document.getElementById('user-badge').innerText = `${json.user.name} (${json.user.role})`;
           renderIndicators(globalData);
@@ -155,9 +145,7 @@
       }
     });
 
-    function logout() {
-      location.reload();
-    }
+    function logout() { location.reload(); }
 
     function setDomainFilter(domain) {
       activeDomain = domain;
@@ -174,8 +162,14 @@
     function filterData() {
       const q = document.getElementById('search-input').value.toLowerCase();
       const filtered = globalData.filter(item => {
-        const matchDomain = (activeDomain === 'الكل' || item.المجال === activeDomain);
-        const matchQ = (item.رقم_المؤشر.toLowerCase().includes(q) || item.نص_المؤشر.toLowerCase().includes(q) || item.المعيار.toLowerCase().includes(q) || item.اسم_الشاهد.toLowerCase().includes(q));
+        const domain = item['المجال'] || item[1] || '';
+        const indCode = item['رقم_المؤشر'] || item[0] || '';
+        const text = item['نص_المؤشر'] || item[3] || '';
+        const standard = item['المعيار'] || item[2] || '';
+        const evidence = item['اسم_الشاهد'] || item[6] || '';
+
+        const matchDomain = (activeDomain === 'الكل' || domain === activeDomain);
+        const matchQ = (indCode.toLowerCase().includes(q) || text.toLowerCase().includes(q) || standard.toLowerCase().includes(q) || evidence.toLowerCase().includes(q));
         return matchDomain && matchQ;
       });
       renderIndicators(filtered);
@@ -190,22 +184,32 @@
       }
 
       data.forEach(item => {
-        const badgeColor = item.مستوى_الأداء_الحالي === 'التميز' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-blue-50 text-blue-700 border-blue-200';
+        const indCode = item['رقم_المؤشر'] || item[0] || '';
+        const domain = item['المجال'] || item[1] || '';
+        const standard = item['المعيار'] || item[2] || '';
+        const text = item['نص_المؤشر'] || item[3] || '';
+        const score = item['نسبة_التقويم_الذاتي'] || item[4] || '';
+        const level = item['مستوى_الأداء_الحالي'] || item[5] || '';
+        const evidenceTitle = item['اسم_الشاهد'] || item[6] || '';
+        const evidenceUrl = item['رابط_الشاهد'] || item[7] || '';
+        const proofDesc = item['ماذا_يثبت_الشاهد'] || item[9] || '';
+
+        const badgeColor = level === 'التميز' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-blue-50 text-blue-700 border-blue-200';
         const card = document.createElement('div');
         card.className = "glass-card rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition";
         card.innerHTML = `
           <div>
             <div class="flex justify-between items-start gap-2 mb-3">
-              <span class="bg-slate-900 text-white px-3 py-1 rounded-lg text-xs font-mono font-bold">${item.رقم_المؤشر}</span>
-              <span class="border px-2.5 py-0.5 rounded-md text-xs font-bold ${badgeColor}">${item.مستوى_الأداء_الحالي} (${item.نسبة_التقويم_الذاتي})</span>
+              <span class="bg-slate-900 text-white px-3 py-1 rounded-lg text-xs font-mono font-bold">${indCode}</span>
+              <span class="border px-2.5 py-0.5 rounded-md text-xs font-bold ${badgeColor}">${level} (${score})</span>
             </div>
-            <div class="text-xs font-bold text-teal-700 mb-1">${item.المجال} ‹ ${item.المعيار}</div>
-            <h3 class="font-bold text-slate-900 text-sm leading-relaxed mb-3">${item.نص_المؤشر}</h3>
-            <p class="text-xs text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">💡 <strong>يثبت الشاهد:</strong> ${item.ماذا_يثبت_الشاهد}</p>
+            <div class="text-xs font-bold text-teal-700 mb-1">${domain} ‹ ${standard}</div>
+            <h3 class="font-bold text-slate-900 text-sm leading-relaxed mb-3">${text}</h3>
+            <p class="text-xs text-slate-500 bg-slate-50 p-2.5 rounded-xl border border-slate-100 mb-4">💡 <strong>يثبت الشاهد:</strong> ${proofDesc}</p>
           </div>
           <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-xs text-slate-400 font-bold">📁 ${item.اسم_الشاهد}</span>
-            <button onclick="openPreview('${item.رابط_الشاهد}', '${item.رقم_المؤشر} - ${item.اسم_الشاهد}')" class="bg-teal-700 hover:bg-teal-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm">
+            <span class="text-xs text-slate-400 font-bold truncate max-w-[200px]">📁 ${evidenceTitle}</span>
+            <button onclick="openPreview('${evidenceUrl}', '${indCode} - ${evidenceTitle}')" class="bg-teal-700 hover:bg-teal-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm shrink-0">
               استعراض الشاهد 📄
             </button>
           </div>
@@ -225,7 +229,7 @@
       }
       document.getElementById('modal-title').innerText = title;
       document.getElementById('modal-watermark').innerText = `ثانوية نعام - رمز الدخول: ${currentCode}`;
-      document.getElementById('modal-external-link.href') = url;
+      document.getElementById('modal-external-link').href = url;
       document.getElementById('modal-iframe').src = embedUrl;
       document.getElementById('preview-modal').classList.remove('hidden');
     }
