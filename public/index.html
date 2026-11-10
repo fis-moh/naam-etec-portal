@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة التقويم المدرسي الخارجي | مجمع مدارس نعام (الابتدائية - المتوسطة - الثانوية)</title>
+  <title>بوابة شواهد التقويم والاعتماد المدرسي | مجمع مدارس نعام التعليمي 1448هـ</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
     body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #0f172a; }
-    .glass-card { background: #ffffff; border: 1px solid #e2e8f0; transition: all 0.2s ease; }
-    .glass-card:hover { border-color: #0d9488; box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.08); }
+    .glass-card { background: #ffffff; border: 1px solid #e2e8f0; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+    .glass-card:hover { border-color: #0d9488; transform: translateY(-2px); box-shadow: 0 12px 28px -6px rgba(13, 148, 136, 0.1); }
     .watermark {
       position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-      pointer-events: none; opacity: 0.05; font-size: 2.1rem; font-weight: 900;
+      pointer-events: none; opacity: 0.05; font-size: 2.2rem; font-weight: 900;
       transform: rotate(-25deg); z-index: 20; color: #0f766e; text-align: center;
       user-select: none; line-height: 1.6;
     }
@@ -28,17 +28,17 @@
           نعام
         </div>
         <span class="bg-teal-50 text-teal-800 text-xs font-bold px-3 py-1 rounded-full border border-teal-200">
-          وزارة التعليم - الإدارة العامة للتعليم بمنطقة الرياض
+          وزارة التعليم • تعليم منطقة الرياض • مكتب حوطة بني تميم
         </span>
-        <h1 class="text-2xl font-black text-slate-900 mt-3">بوابة الشواهد الرقمية</h1>
-        <p class="text-sm text-teal-800 font-extrabold mt-1">مجمع مدارس نعام (الابتدائية - المتوسطة - الثانوية)</p>
-        <p class="text-xs text-slate-500 mt-1 font-medium">بنين | الرقم الوزاري: S-M115007</p>
+        <h1 class="text-2xl font-black text-slate-900 mt-3">بوابة الشواهد الرقمية 1448هـ</h1>
+        <p class="text-sm text-teal-800 font-extrabold mt-1">مجمع مدارس نعام للبنين</p>
+        <p class="text-xs text-slate-500 mt-0.5">الابتدائية (S-15103) • المتوسطة (S-15144) • الثانوية (S-M115007)</p>
       </div>
 
       <form id="login-form" class="space-y-4">
         <div>
           <label for="access-code" class="block text-xs font-bold text-slate-700 mb-2">
-            أدخل رمز التصريح الأمني للوصول إلى شواهد المجمع:
+            رمز التصريح الأمني المعتمد لزيارة التقويم:
           </label>
           <div class="relative">
             <input
@@ -46,7 +46,7 @@
               id="access-code"
               required
               autocomplete="off"
-              placeholder="أدخل رمز الوصول المعتمد..."
+              placeholder="أدخل رمز الدخول المصرح..."
               class="w-full px-4 py-3.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-600 focus:border-teal-600 focus:outline-none text-center tracking-widest font-mono text-base uppercase bg-slate-50"
             >
             <button
@@ -65,124 +65,120 @@
           id="login-btn"
           class="w-full bg-teal-700 hover:bg-teal-800 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-teal-700/25 flex items-center justify-center gap-2"
         >
-          <span>تحقق واستعراض الشواهد</span>
+          <span>تسجيل الدخول واستعراض الشواهد</span>
         </button>
 
-        <div id="login-error" class="bg-red-50 border border-red-200 text-red-700 text-xs text-center p-3 rounded-xl hidden font-bold leading-relaxed"></div>
+        <div id="login-error" class="bg-red-50 border border-red-200 text-red-700 text-xs text-center p-3 rounded-xl hidden font-bold"></div>
       </form>
 
       <div class="mt-6 pt-5 border-t border-slate-100 text-center">
         <p class="text-[11px] text-slate-400 leading-relaxed">
-          جميع الوثائق والشواهد المدرجة في هذه البوابة مصنفة ومحمية بموجب نظام حماية البيانات الشخصية السعودي (PDPL) ومخصصة لأغراض التقويم والاعتماد المدرسي لمجمع مدارس نعام.
+          جميع الوثائق والشواهد المدرجة مصنفة ومحمية وتخضع لنظام حماية البيانات الشخصية السعودي (PDPL) لأغراض التقويم والاعتماد المدرسي لعام 1448هـ.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- الواجهة الرئيسية للبوابة -->
+  <!-- المنصة والتطبيق الرئيسي -->
   <div id="main-app" class="hidden flex-col min-h-screen">
-    <!-- الترويسة العلوية -->
+    <!-- الترويسة الرئيسية -->
     <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30 border-b border-slate-800">
       <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap justify-between items-center gap-4">
         <div class="flex items-center gap-3">
           <div class="bg-teal-600 text-white px-3.5 py-2 rounded-xl font-black text-lg">نعام</div>
           <div>
-            <div class="flex flex-wrap items-center gap-2">
-              <h1 class="font-extrabold text-base md:text-lg">مجمع مدارس نعام للبنين</h1>
-              <span class="bg-teal-900/80 text-teal-300 border border-teal-700 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
-                الابتدائية • المتوسطة • الثانوية
-              </span>
+            <div class="flex items-center gap-2">
+              <h1 class="font-extrabold text-base md:text-lg">مجمع مدارس نعام التعليمي للبنين</h1>
+              <span class="bg-teal-900 text-teal-300 border border-teal-700 text-[11px] font-bold px-2 py-0.5 rounded-md">1448هـ</span>
             </div>
-            <p class="text-xs text-slate-400 mt-0.5">الرقم الوزاري: S-M115007 | بوابة شواهد التقويم المدرسي الخارجي المعتمدة</p>
+            <p class="text-xs text-slate-400 mt-0.5">مدير المدرسة: أ. زيد حمد آل داود | بوابة التقويم المدرسي المعتمدة</p>
           </div>
         </div>
         <div class="flex items-center gap-2.5">
-          <button onclick="toggleHeatmap()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-xl text-xs font-bold border border-slate-700 transition">
-            خريطة الـ 45 مؤشراً
-          </button>
-          <button id="admin-panel-btn" onclick="toggleAdminPanel()" class="hidden bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 px-3 py-2 rounded-xl text-xs font-bold border border-amber-500/30 transition">
-            لوحة فحص الجودة
-          </button>
           <div id="user-badge" class="bg-teal-950 text-teal-300 px-3 py-2 rounded-xl text-xs font-bold border border-teal-800"></div>
-          <button onclick="logout()" class="bg-red-500/15 hover:bg-red-500/25 text-red-300 px-3 py-2 rounded-xl text-xs font-bold transition">
-            خروج
-          </button>
+          <button onclick="logout()" class="bg-red-500/15 hover:bg-red-500/25 text-red-300 px-3 py-2 rounded-xl text-xs font-bold transition">خروج</button>
         </div>
       </div>
     </header>
 
-    <!-- شريط الإحصاءات التنفيذي -->
-    <section class="bg-white border-b border-slate-200 py-5">
-      <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/70">
-          <div id="stat-total-ind" class="text-2xl font-black text-slate-900">45</div>
-          <div class="text-xs text-slate-500 font-bold mt-1">إجمالي المؤشرات المعتمدة للمجمع</div>
-        </div>
-        <div class="bg-emerald-50/60 p-4 rounded-2xl border border-emerald-200/70">
-          <div id="stat-completed" class="text-2xl font-black text-emerald-700">45 (100%)</div>
-          <div class="text-xs text-emerald-800 font-bold mt-1">المؤشرات المكتملة الشواهد</div>
-        </div>
-        <div class="bg-blue-50/60 p-4 rounded-2xl border border-blue-200/70">
-          <div class="text-2xl font-black text-blue-700">88% ⬅ 90%+</div>
-          <div class="text-xs text-blue-800 font-bold mt-1">التقويم الذاتي ⬅ مستهدف التميز</div>
-        </div>
-        <div class="bg-amber-50/60 p-4 rounded-2xl border border-amber-200/70">
-          <div id="stat-files-count" class="text-2xl font-black text-amber-700">45 وثيقة</div>
-          <div class="text-xs text-amber-800 font-bold mt-1">إجمالي ملفات الشواهد المربوطة</div>
+    <!-- شريط التبديل بين المراحل الدراسية -->
+    <section class="bg-slate-800 text-white border-b border-slate-700">
+      <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+        <span class="text-xs text-slate-400 font-bold hidden sm:inline">اختر المرحلة الدراسية:</span>
+        <div id="stage-tabs" class="flex flex-wrap gap-2">
+          <button onclick="selectStage('ابتدائي')" data-stage="ابتدائي" class="stage-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-teal-700 text-white">
+            🏫 الابتدائية (S-15103)
+          </button>
+          <button onclick="selectStage('متوسط')" data-stage="متوسط" class="stage-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-700 text-slate-300 hover:bg-slate-600">
+            🏫 المتوسطة (S-15144)
+          </button>
+          <button onclick="selectStage('ثانوي')" data-stage="ثانوي" class="stage-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-700 text-slate-300 hover:bg-slate-600">
+            🏫 الثانوية - مسارات (S-M115007)
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- خريطة التغطية الحرارية (45 مؤشراً) -->
-    <section id="heatmap-section" class="hidden bg-slate-900 text-white border-b border-slate-800 py-6">
+    <!-- بطاقة واقع المرحلة المحددة والتقارير الرسمية -->
+    <section class="bg-white border-b border-slate-200 py-6">
       <div class="max-w-7xl mx-auto px-4">
-        <div class="flex justify-between items-center mb-4">
-          <div>
-            <h2 class="font-bold text-base text-teal-400">خريطة التغطية الحرارية لمؤشرات المجمع (45 مؤشراً)</h2>
-            <p class="text-xs text-slate-400">اضغط على رقم أي مؤشر للانتقال الفوري إلى بطاقته وشواهده</p>
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col lg:flex-row justify-between items-center gap-6">
+          <div class="flex-grow">
+            <div class="flex items-center gap-3 mb-2">
+              <h2 id="current-stage-title" class="text-xl font-black text-slate-900">ابتدائية نعام (بنين)</h2>
+              <span id="current-stage-id" class="bg-slate-900 text-white text-xs font-mono font-bold px-2.5 py-1 rounded-lg">S-15103</span>
+            </div>
+            <p id="current-stage-desc" class="text-xs text-slate-600 leading-relaxed max-w-3xl">
+              إجمالي الطلاب: 20 طالباً • الأداء العام: 80% (مستوى التقدم) • البيئة المدرسية: 95.54% (التميز)
+            </p>
           </div>
-          <button onclick="toggleHeatmap()" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white">إخفاء الخريطة ✕</button>
+          <!-- مؤشرات سريعة -->
+          <div class="grid grid-cols-3 gap-3 text-center shrink-0 w-full lg:w-auto">
+            <div class="bg-white px-4 py-3 rounded-xl border border-slate-200">
+              <div id="stat-actions-count" class="text-xl font-black text-amber-600">0</div>
+              <div class="text-[11px] text-slate-500 font-bold">إجراءات التحسين</div>
+            </div>
+            <div class="bg-white px-4 py-3 rounded-xl border border-slate-200">
+              <div id="stat-records-count" class="text-xl font-black text-teal-700">0</div>
+              <div class="text-[11px] text-slate-500 font-bold">سجلات المعايير</div>
+            </div>
+            <div class="bg-white px-4 py-3 rounded-xl border border-slate-200">
+              <div class="text-xl font-black text-emerald-600">100%</div>
+              <div class="text-[11px] text-slate-500 font-bold">اكتمال الشواهد</div>
+            </div>
+          </div>
         </div>
-        <div id="heatmap-grid" class="grid grid-cols-5 sm:grid-cols-9 md:grid-cols-15 gap-2"></div>
       </div>
     </section>
 
-    <!-- لوحة فحص الجودة للإدارة -->
-    <section id="admin-section" class="hidden bg-amber-50 border-b border-amber-200 py-6">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="flex justify-between items-center mb-3">
-          <h2 class="font-black text-base text-amber-900">لوحة الفحص الإداري وضبط الجودة - مجمع مدارس نعام</h2>
-          <button onclick="toggleAdminPanel()" class="text-xs bg-amber-200/60 px-3 py-1 rounded-lg text-amber-900 font-bold">إغلاق</button>
+    <!-- شريط التحكم والعرض (التحويل بين خطة التحسين والسجلات والمعايير) -->
+    <section class="max-w-7xl mx-auto px-4 pt-6 w-full">
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+        <!-- أزرار التبديل الرئيسية -->
+        <div class="flex gap-2 w-full md:w-auto">
+          <button onclick="setViewMode('actions')" id="view-actions-btn" class="flex-1 md:flex-initial px-5 py-2.5 rounded-xl text-xs font-bold transition bg-amber-600 text-white shadow-sm">
+            ⭐ خطة التحسين الميدانية (العلاجية)
+          </button>
+          <button onclick="setViewMode('records')" id="view-records-btn" class="flex-1 md:flex-initial px-5 py-2.5 rounded-xl text-xs font-bold transition bg-slate-100 text-slate-700 hover:bg-slate-200">
+            📁 السجلات والمعايير الإدارية (1448هـ)
+          </button>
         </div>
-        <div id="admin-report" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs"></div>
-      </div>
-    </section>
-
-    <!-- شريط البحث والفلاتر -->
-    <section class="max-w-7xl mx-auto px-4 py-6 w-full">
-      <div class="flex flex-col lg:flex-row gap-4 items-center justify-between bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-        <div class="w-full lg:w-96 relative">
+        <!-- شريط البحث -->
+        <div class="w-full md:w-80">
           <input
             type="text"
             id="search-input"
-            oninput="filterData()"
-            placeholder="ابحث برقم المؤشر (مثل 1-1-1-1) أو الكلمة المفتاحية..."
-            class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-600 focus:outline-none text-sm bg-slate-50"
+            oninput="renderCurrentView()"
+            placeholder="ابحث بالاسم، المؤشر، أو المعيار..."
+            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-600 focus:outline-none text-xs bg-slate-50"
           >
-        </div>
-        <div id="filter-tabs" class="flex flex-wrap gap-2 w-full lg:w-auto">
-          <button onclick="setDomainFilter('الكل')" data-domain="الكل" class="filter-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-teal-700 text-white transition">الكل (45)</button>
-          <button onclick="setDomainFilter('الإدارة المدرسية')" data-domain="الإدارة المدرسية" class="filter-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">الإدارة المدرسية (16)</button>
-          <button onclick="setDomainFilter('التعليم والتعلم')" data-domain="التعليم والتعلم" class="filter-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">التعليم والتعلم (13)</button>
-          <button onclick="setDomainFilter('نواتج التعلم')" data-domain="نواتج التعلم" class="filter-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">نواتج التعلم (9)</button>
-          <button onclick="setDomainFilter('البيئة المدرسية')" data-domain="البيئة المدرسية" class="filter-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">البيئة المدرسية (7)</button>
         </div>
       </div>
     </section>
 
-    <!-- شبكة بطاقات المؤشرات -->
-    <main class="max-w-7xl mx-auto px-4 pb-16 flex-grow w-full">
-      <div id="indicators-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    <!-- الشبكة الحيوية للبيانات -->
+    <main class="max-w-7xl mx-auto px-4 py-6 pb-20 flex-grow w-full">
+      <div id="content-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
     </main>
 
     <!-- نافذة المعاينة المدمجة (Modal) -->
@@ -191,19 +187,17 @@
         <div class="bg-slate-900 text-white px-5 py-3.5 flex flex-wrap justify-between items-center gap-3">
           <div>
             <h3 id="modal-title" class="font-bold text-sm md:text-base text-teal-300">معاينة وثيقة الشاهد</h3>
-            <p id="modal-subtitle" class="text-[11px] text-slate-400 mt-0.5">مجمع مدارس نعام (الابتدائية - المتوسطة - الثانوية) | الرقم الوزاري: S-M115007</p>
+            <p id="modal-subtitle" class="text-[11px] text-slate-400 mt-0.5">مجمع مدارس نعام التعليمي للبنين (1448هـ)</p>
           </div>
           <div class="flex items-center gap-2.5">
             <a id="modal-external-link" href="#" target="_blank" rel="noopener noreferrer" class="bg-teal-700 hover:bg-teal-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition">
-              فتح الوثيقة في نافذة مستقلة ↗
+              فتح المجلد / الوثيقة في نافذة مستقلة ↗
             </a>
-            <button onclick="closeModal()" class="bg-red-500/20 hover:bg-red-500/40 text-red-300 w-9 h-9 rounded-xl font-bold flex items-center justify-center transition">
-              ✕
-            </button>
+            <button onclick="closeModal()" class="bg-red-500/20 hover:bg-red-500/40 text-red-300 w-9 h-9 rounded-xl font-bold flex items-center justify-center transition">✕</button>
           </div>
         </div>
         <div class="flex-grow bg-slate-100 relative flex items-center justify-center overflow-hidden">
-          <div class="watermark" id="modal-watermark"></div>
+          <div class="watermark" id="modal-watermark">مجمع مدارس نعام (1448هـ)<br>لجنة التقويم المدرسي</div>
           <iframe id="modal-iframe" src="" class="w-full h-full border-0 relative z-10 bg-white" allow="autoplay"></iframe>
         </div>
       </div>
@@ -211,9 +205,28 @@
   </div>
 
   <script>
-    let groupedIndicators = [];
+    let rawData = { improvementActions: [], operationalRecords: [] };
     let currentUser = null;
-    let activeDomain = 'الكل';
+    let selectedStage = 'ابتدائي';
+    let currentViewMode = 'actions'; // 'actions' أو 'records'
+
+    const stageMeta = {
+      'ابتدائي': {
+        title: 'ابتدائية نعام (بنين)',
+        id: 'S-15103',
+        desc: 'إجمالي الطلاب: 20 طالباً • متوسط الأداء: 80% (التقدم) • البيئة المدرسية: 95.54% (التميز) • التركيز: علاج مهارات القراءة والحساب في نافس'
+      },
+      'متوسط': {
+        title: 'متوسطة نعام (بنين)',
+        id: 'S-15144',
+        desc: 'إجمالي الطلاب: 55 طالباً • متوسط الأداء: 88% (التقدم) • تميز التعليم والتعلم: 94.25% والبيئة: 97% • التركيز: معالجة فجوة نافس (قراءة، رياضيات، علوم)'
+      },
+      'ثانوي': {
+        title: 'ثانوية نعام (بنين) - مسارات',
+        id: 'S-M115007',
+        desc: 'إجمالي الطلاب: 50 طالباً • متوسط الأداء: 88% (التقدم) • الإدارة: 91.47% والبيئة: 91.64% • التركيز: رفع نتائج القدرات والتحصيلي ومشاريع المسارات'
+      }
+    };
 
     function togglePasswordVisibility() {
       const input = document.getElementById('access-code');
@@ -229,14 +242,13 @@
 
     document.getElementById('login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const codeInput = document.getElementById('access-code');
-      const code = codeInput.value.trim();
+      const code = document.getElementById('access-code').value.trim();
       const errDiv = document.getElementById('login-error');
       const btn = document.getElementById('login-btn');
 
       errDiv.classList.add('hidden');
       btn.disabled = true;
-      btn.innerHTML = '<span>جاري التحقق وتحميل شواهد المجمع...</span>';
+      btn.innerHTML = '<span>جاري التحقق وقراءة قاعدة البيانات...</span>';
 
       try {
         const res = await fetch(`/api/data?code=${encodeURIComponent(code)}`);
@@ -244,7 +256,7 @@
 
         if (res.ok && json.success) {
           currentUser = json.user;
-          processAndGroupIndicators(json.indicators || []);
+          rawData = json.data;
 
           document.getElementById('login-screen').classList.add('hidden');
           const mainApp = document.getElementById('main-app');
@@ -253,16 +265,19 @@
 
           document.getElementById('user-badge').innerText = `${currentUser.name} (${currentUser.role})`;
 
-          if (currentUser.role === 'مدير') {
-            document.getElementById('admin-panel-btn').classList.remove('hidden');
-            buildAdminReport();
+          // إذا كان الرمز مخصصاً لمرحلة معينة
+          if (currentUser.stage && currentUser.stage !== 'الكل') {
+            selectedStage = currentUser.stage;
+            // إخفاء بقية المراحل لعدم التشتت
+            document.querySelectorAll('.stage-btn').forEach(b => {
+              if (b.getAttribute('data-stage') !== selectedStage) b.style.display = 'none';
+            });
           }
 
-          buildHeatmap();
-          renderIndicators(groupedIndicators);
-          checkUrlParams();
+          updateStageHeader();
+          renderCurrentView();
         } else {
-          errDiv.innerText = json.error || 'رمز الوصول غير صحيح.';
+          errDiv.innerText = json.error || 'رمز الدخول غير صحيح.';
           errDiv.classList.remove('hidden');
         }
       } catch (err) {
@@ -270,197 +285,145 @@
         errDiv.classList.remove('hidden');
       } finally {
         btn.disabled = false;
-        btn.innerHTML = '<span>تحقق واستعراض الشواهد</span>';
+        btn.innerHTML = '<span>تسجيل الدخول واستعراض الشواهد</span>';
       }
     });
 
-    function processAndGroupIndicators(rawRows) {
-      const map = new Map();
-      let totalFiles = 0;
-
-      rawRows.forEach(row => {
-        const code = row.code;
-        if (!code) return;
-
-        if (!map.has(code)) {
-          map.set(code, {
-            code: row.code,
-            domain: row.domain,
-            standard: row.standard,
-            text: row.text,
-            selfScore: row.selfScore,
-            level: row.level,
-            proofDesc: row.proofDesc,
-            status: row.status,
-            sensitivity: row.sensitivity,
-            folderUrl: row.folderUrl,
-            evidences: []
-          });
-        }
-
-        if (row.evidenceUrl) {
-          totalFiles++;
-          map.get(code).evidences.push({
-            title: row.evidenceTitle || `شاهد المؤشر ${code}`,
-            url: row.evidenceUrl,
-            type: row.fileType || 'PDF'
-          });
-        }
-      });
-
-      groupedIndicators = Array.from(map.values());
-      const completedCount = groupedIndicators.filter(ind => ind.status === 'مكتمل' && ind.evidences.length > 0).length;
-      const totalInd = groupedIndicators.length || 45;
-      const pct = Math.round((completedCount / totalInd) * 100);
-
-      document.getElementById('stat-total-ind').innerText = totalInd;
-      document.getElementById('stat-completed').innerText = `${completedCount} (${pct}%)`;
-      document.getElementById('stat-files-count').innerText = `${totalFiles} وثيقة`;
-    }
-
-    function buildHeatmap() {
-      const grid = document.getElementById('heatmap-grid');
-      grid.innerHTML = '';
-      groupedIndicators.forEach(item => {
-        const isReady = item.status === 'مكتمل' && item.evidences.length > 0;
-        const btn = document.createElement('button');
-        btn.className = `p-2 rounded-lg text-xs font-mono font-bold border transition ${
-          isReady
-            ? 'bg-emerald-900/60 border-emerald-600 text-emerald-200 hover:bg-emerald-700'
-            : 'bg-amber-900/50 border-amber-600 text-amber-200 hover:bg-amber-700'
-        }`;
-        btn.innerText = item.code;
-        btn.title = item.text;
-        btn.onclick = () => {
-          setDomainFilter('الكل');
-          document.getElementById('search-input').value = item.code;
-          filterData();
-          window.scrollTo({ top: 320, behavior: 'smooth' });
-        };
-        grid.appendChild(btn);
-      });
-    }
-
-    function buildAdminReport() {
-      const missingEv = groupedIndicators.filter(i => i.evidences.length === 0 || i.status !== 'مكتمل');
-      const lowScore = groupedIndicators.filter(i => i.level !== 'التميز');
-      const restricted = groupedIndicators.filter(i => i.sensitivity === 'مقيّد');
-
-      document.getElementById('admin-report').innerHTML = `
-        <div class="bg-white p-4 rounded-xl border border-amber-200">
-          <div class="font-bold text-slate-800 mb-1">المؤشرات غير المكتملة (${missingEv.length})</div>
-          <p class="text-slate-500">${missingEv.length === 0 ? 'جميع الـ 45 مؤشراً للمجمع مكتملة ومربوطة بملفات فعالة.' : missingEv.map(m => m.code).join(' ، ')}</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl border border-amber-200">
-          <div class="font-bold text-slate-800 mb-1">مؤشرات بمرحلة التقدم تحتاج دعم للتميز (${lowScore.length})</div>
-          <p class="text-slate-500 truncate">${lowScore.map(l => l.code).join(' ، ')}</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl border border-amber-200">
-          <div class="font-bold text-slate-800 mb-1">وثائق خاضعة لحماية البيانات (${restricted.length})</div>
-          <p class="text-slate-500">محمية بعلامة مائية ديناميكية باسم الفاحص.</p>
-        </div>
-      `;
-    }
-
-    function toggleHeatmap() {
-      document.getElementById('heatmap-section').classList.toggle('hidden');
-    }
-
-    function toggleAdminPanel() {
-      document.getElementById('admin-section').classList.toggle('hidden');
-    }
-
-    function logout() {
-      window.location.href = window.location.pathname;
-    }
-
-    function setDomainFilter(domain) {
-      activeDomain = domain;
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        if (btn.getAttribute('data-domain') === domain) {
-          btn.className = "filter-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-teal-700 text-white transition shadow-sm";
+    function selectStage(stage) {
+      selectedStage = stage;
+      document.querySelectorAll('.stage-btn').forEach(btn => {
+        if (btn.getAttribute('data-stage') === stage) {
+          btn.className = "stage-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-teal-700 text-white";
         } else {
-          btn.className = "filter-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition";
+          btn.className = "stage-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-slate-700 text-slate-300 hover:bg-slate-600";
         }
       });
-      filterData();
+      updateStageHeader();
+      renderCurrentView();
     }
 
-    function filterData() {
+    function updateStageHeader() {
+      const meta = stageMeta[selectedStage];
+      document.getElementById('current-stage-title').innerText = meta.title;
+      document.getElementById('current-stage-id').innerText = meta.id;
+      document.getElementById('current-stage-desc').innerText = meta.desc;
+
+      const actionsCount = rawData.improvementActions.filter(a => a.stage === selectedStage).length;
+      const recordsCount = rawData.operationalRecords.filter(r => r.stage === selectedStage || r.stage === 'مشترك').length;
+
+      document.getElementById('stat-actions-count').innerText = actionsCount;
+      document.getElementById('stat-records-count').innerText = recordsCount;
+    }
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      const actBtn = document.getElementById('view-actions-btn');
+      const recBtn = document.getElementById('view-records-btn');
+
+      if (mode === 'actions') {
+        actBtn.className = "flex-1 md:flex-initial px-5 py-2.5 rounded-xl text-xs font-bold transition bg-amber-600 text-white shadow-sm";
+        recBtn.className = "flex-1 md:flex-initial px-5 py-2.5 rounded-xl text-xs font-bold transition bg-slate-100 text-slate-700 hover:bg-slate-200";
+      } else {
+        recBtn.className = "flex-1 md:flex-initial px-5 py-2.5 rounded-xl text-xs font-bold transition bg-teal-700 text-white shadow-sm";
+        actBtn.className = "flex-1 md:flex-initial px-5 py-2.5 rounded-xl text-xs font-bold transition bg-slate-100 text-slate-700 hover:bg-slate-200";
+      }
+      renderCurrentView();
+    }
+
+    function renderCurrentView() {
       const q = document.getElementById('search-input').value.trim().toLowerCase();
-      const filtered = groupedIndicators.filter(item => {
-        const matchDomain = (activeDomain === 'الكل' || item.domain === activeDomain);
-        const matchQ = !q ||
-          item.code.toLowerCase().includes(q) ||
-          item.text.toLowerCase().includes(q) ||
-          item.standard.toLowerCase().includes(q) ||
-          item.proofDesc.toLowerCase().includes(q) ||
-          item.evidences.some(e => e.title.toLowerCase().includes(q));
-        return matchDomain && matchQ;
-      });
-      renderIndicators(filtered);
-    }
-
-    function renderIndicators(list) {
-      const grid = document.getElementById('indicators-grid');
+      const grid = document.getElementById('content-grid');
       grid.innerHTML = '';
 
-      if (list.length === 0) {
-        grid.innerHTML = '<div class="col-span-2 text-center py-14 bg-white rounded-2xl border border-slate-200 text-slate-400 font-bold">لا توجد مؤشرات مطابقة لمعايير البحث الحالية.</div>';
-        return;
-      }
+      if (currentViewMode === 'actions') {
+        // عرض بطاقات خطة التحسين الميدانية
+        const list = rawData.improvementActions.filter(item => {
+          const matchStage = (item.stage === selectedStage);
+          const matchQ = !q ||
+            item.code.toLowerCase().includes(q) ||
+            item.actionName.toLowerCase().includes(q) ||
+            item.element.toLowerCase().includes(q) ||
+            item.description.toLowerCase().includes(q);
+          return matchStage && matchQ;
+        });
 
-      list.forEach(item => {
-        const isExcellence = item.level === 'التميز';
-        const badgeColor = isExcellence
-          ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-          : 'bg-blue-50 text-blue-700 border-blue-200';
+        if (list.length === 0) {
+          grid.innerHTML = '<div class="col-span-2 text-center py-16 bg-white rounded-2xl border border-slate-200 text-slate-400 font-bold">لا توجد إجراءات تحسين مطابقة لمعايير البحث.</div>';
+          return;
+        }
 
-        const sensitivityBadge = item.sensitivity === 'مقيّد'
-          ? '<span class="bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-md text-[11px] font-bold">وثيقة مقيدة (PDPL)</span>'
-          : '';
-
-        const evidencesHtml = item.evidences.map((ev) => {
-          const safeTitle = ev.title.replace(/'/g, "\\'");
-          const safeUrl = ev.url.replace(/'/g, "\\'");
-          return `
-            <button
-              onclick="openPreview('${safeUrl}', '${item.code} - ${safeTitle}')"
-              class="w-full flex items-center justify-between bg-teal-50/70 hover:bg-teal-700 text-teal-900 hover:text-white px-4 py-2.5 rounded-xl text-xs font-bold border border-teal-200/80 transition group"
-            >
-              <span class="truncate">📄 ${ev.title}</span>
-              <span class="text-[11px] bg-white/80 group-hover:bg-teal-800 text-teal-800 group-hover:text-white px-2.5 py-1 rounded-lg shrink-0 mr-2">
-                معاينة الشاهد
-              </span>
-            </button>
-          `;
-        }).join('');
-
-        const card = document.createElement('div');
-        card.className = "glass-card rounded-2xl p-6 shadow-sm flex flex-col justify-between";
-        card.innerHTML = `
-          <div>
-            <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
-              <div class="flex items-center gap-2">
-                <span class="bg-slate-900 text-white px-3 py-1 rounded-lg text-xs font-mono font-bold">${item.code}</span>
-                ${sensitivityBadge}
+        list.forEach(item => {
+          const card = document.createElement('div');
+          card.className = "glass-card rounded-2xl p-6 shadow-sm flex flex-col justify-between";
+          card.innerHTML = `
+            <div>
+              <div class="flex justify-between items-start gap-2 mb-3">
+                <span class="bg-amber-100 text-amber-900 border border-amber-300 px-3 py-1 rounded-lg text-xs font-mono font-bold">${item.code}</span>
+                <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-0.5 rounded-md text-xs font-bold">الأداء السابق: ${item.previousScore} ⬅ ${item.targetScore}</span>
               </div>
-              <span class="border px-2.5 py-1 rounded-lg text-xs font-bold ${badgeColor}">
-                ${item.level} (${item.selfScore})
-              </span>
+              <div class="text-xs font-bold text-amber-700 mb-1">${item.domain} ‹ ${item.element}</div>
+              <h3 class="font-black text-slate-900 text-base leading-snug mb-2">${item.actionName}</h3>
+              <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200 mb-3 leading-relaxed">
+                <strong>ما تم تنفيذه:</strong> ${item.description}
+              </p>
+              <div class="text-[11px] text-slate-500 flex flex-wrap justify-between gap-2 mb-4">
+                <span>👤 <strong>المسؤول:</strong> ${item.responsible}</span>
+                <span>📅 <strong>التاريخ:</strong> ${item.date}</span>
+              </div>
             </div>
-            <div class="text-xs font-bold text-teal-700 mb-1.5">${item.domain} ‹ ${item.standard}</div>
-            <h3 class="font-bold text-slate-900 text-sm leading-relaxed mb-3.5">${item.text}</h3>
-            <div class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-200/60 mb-4 leading-relaxed">
-              <strong class="text-slate-800">ما يثبته الشاهد:</strong> ${item.proofDesc}
+            <div class="pt-3 border-t border-slate-100">
+              <button onclick="openPreview('${item.evidenceUrl}', '${item.code} - ${item.actionName}')" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-sm">
+                <span>استعراض وثائق وشواهد الإجراء 📄</span>
+              </button>
             </div>
-          </div>
-          <div class="pt-3 border-t border-slate-100 space-y-2">
-            ${evidencesHtml || '<div class="text-xs text-amber-600 font-bold py-2">قيد استكمال رفع الوثيقة</div>'}
-          </div>
-        `;
-        grid.appendChild(card);
-      });
+          `;
+          grid.appendChild(card);
+        });
+
+      } else {
+        // عرض السجلات والمعايير الإدارية
+        const list = rawData.operationalRecords.filter(item => {
+          const matchStage = (item.stage === selectedStage || item.stage === 'مشترك');
+          const matchQ = !q ||
+            item.recordName.toLowerCase().includes(q) ||
+            item.standard.toLowerCase().includes(q) ||
+            item.domain.toLowerCase().includes(q) ||
+            item.responsible.toLowerCase().includes(q);
+          return matchStage && matchQ;
+        });
+
+        if (list.length === 0) {
+          grid.innerHTML = '<div class="col-span-2 text-center py-16 bg-white rounded-2xl border border-slate-200 text-slate-400 font-bold">لا توجد سجلات مطابقة لمعايير البحث.</div>';
+          return;
+        }
+
+        list.forEach(item => {
+          const isShared = item.stage === 'مشترك';
+          const badgeStage = isShared
+            ? '<span class="bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded text-[11px] font-bold">ملف مشترك للمجمع</span>'
+            : `<span class="bg-slate-100 text-slate-700 border border-slate-200 px-2 py-0.5 rounded text-[11px] font-bold">${stageMeta[selectedStage].title}</span>`;
+
+          const card = document.createElement('div');
+          card.className = "glass-card rounded-2xl p-5 shadow-sm flex flex-col justify-between";
+          card.innerHTML = `
+            <div>
+              <div class="flex justify-between items-center gap-2 mb-2">
+                ${badgeStage}
+                <span class="text-emerald-700 text-[11px] font-bold">✔ ${item.verificationLevel}</span>
+              </div>
+              <div class="text-xs font-bold text-teal-700 mb-1">${item.domain} ‹ معيار ${item.standard}</div>
+              <h3 class="font-extrabold text-slate-900 text-sm mb-3">📁 ${item.recordName}</h3>
+              <p class="text-xs text-slate-500 mb-4">مسؤول السجل بالمدرسة: <strong>${item.responsible}</strong></p>
+            </div>
+            <div class="pt-3 border-t border-slate-100">
+              <button onclick="openPreview('${item.evidenceUrl}', '${item.recordName}')" class="w-full bg-slate-900 hover:bg-slate-800 text-teal-300 font-bold py-2 rounded-xl text-xs transition flex items-center justify-center gap-2">
+                <span>فتح مجلد شواهد السجل 📂</span>
+              </button>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
     }
 
     function openPreview(url, title) {
@@ -470,13 +433,16 @@
       }
 
       let embedUrl = url;
-      const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-      if (driveMatch && driveMatch[1]) {
-        embedUrl = `https://drive.google.com/file/d/${driveMatch[1]}/preview`;
+      // تحويل روابط ملفات ومجلدات درايف للمعاين المباشرة
+      if (url.includes('drive.google.com/file/d/')) {
+        const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+        if (match && match[1]) embedUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
+      } else if (url.includes('drive.google.com/drive/folders/')) {
+        embedUrl = url; // المجلدات تفتح مباشرة في نافذة المتصفح المدمجة
       }
 
       document.getElementById('modal-title').innerText = title;
-      document.getElementById('modal-watermark').innerHTML = `مجمع مدارس نعام (S-M115007)<br>${currentUser ? currentUser.name : 'لجنة التقويم الخارجي'}`;
+      document.getElementById('modal-watermark').innerHTML = `مجمع مدارس نعام (1448هـ)<br>${currentUser ? currentUser.name : 'فريق التقويم الخارجي'}`;
       document.getElementById('modal-external-link').href = url;
       document.getElementById('modal-iframe').src = embedUrl;
 
@@ -492,13 +458,8 @@
       modal.classList.remove('flex');
     }
 
-    function checkUrlParams() {
-      const params = new URLSearchParams(window.location.search);
-      const ind = params.get('ind');
-      if (ind) {
-        document.getElementById('search-input').value = ind;
-        filterData();
-      }
+    function logout() {
+      window.location.reload();
     }
   </script>
 </body>
