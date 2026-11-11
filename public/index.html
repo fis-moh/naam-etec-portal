@@ -139,7 +139,7 @@
       </div>
     </header>
 
-    <!-- بطاقة تعريف المرحلة ومؤشرات المجالات الأربعة (بتصميم لوني هادئ وموحد) -->
+    <!-- بطاقة تعريف المرحلة ومؤشرات المجالات الأربعة -->
     <section class="bg-white border-b border-slate-200 py-5">
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-5">
@@ -153,7 +153,7 @@
           </div>
         </div>
 
-        <!-- المجالات الأربعة بتنسيق علمي موحد بعيداً عن تشتت الألوان -->
+        <!-- المجالات الأربعة بتنسيق علمي موحد -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
           <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
             <div id="dom-score-admin" class="text-lg md:text-xl font-black text-slate-900">91.47%</div>
@@ -191,7 +191,7 @@
 
     <!-- شريط التبويبات الثلاثة الرئيسية + محرك البحث + الفلاتر الفرعية -->
     <section class="max-w-7xl mx-auto px-4 pt-6 w-full space-y-4">
-      <!-- التبويبات الثلاثة البارزة (خطة التحسين | الخطة التشغيلية | السجلات والمعايير الـ 36) -->
+      <!-- التبويبات الثلاثة البارزة -->
       <div class="flex flex-col lg:flex-row gap-4 items-center justify-between bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm">
         <div class="flex flex-wrap gap-2 w-full lg:w-auto">
           <button onclick="setViewMode('actions')" id="view-actions-btn" class="flex-1 lg:flex-initial px-4 py-2.5 rounded-xl text-xs font-extrabold transition bg-teal-700 text-white">
@@ -220,7 +220,7 @@
       <div id="sub-filters-bar" class="flex flex-wrap gap-2"></div>
     </section>
 
-    <!-- منطقة المحتوى الرئيسي (البطاقات القيادية + بطاقات الشواهد والسجلات) -->
+    <!-- منطقة المحتوى الرئيسي -->
     <main class="max-w-7xl mx-auto px-4 py-6 pb-20 flex-grow w-full">
       <div id="content-container" class="space-y-8"></div>
     </main>
@@ -444,7 +444,6 @@
       bar.innerHTML = '';
 
       if (currentViewMode === 'operational') {
-        // الخطة التشغيلية تركز مباشرة على وثائق التخطيط والـ 6 سجلات الخاصة بها
         return;
       }
 
@@ -485,7 +484,6 @@
         const impDoc = getStageDoc('خطة_التحسين');
         const realityDoc = getStageDoc('تقرير_الواقع');
 
-        // 1. البطاقة الرئيسية الكبرى لملف خطة التحسين وتقرير واقع المدرسة في الأعلى
         const masterBlock = document.createElement('div');
         masterBlock.className = "master-plan-card rounded-2xl p-6 text-white shadow-md";
         masterBlock.innerHTML = `
@@ -510,7 +508,6 @@
         `;
         container.appendChild(masterBlock);
 
-        // 2. بطاقات المعايير والإجراءات المطلوب لها شواهد تحت البطاقة الكبرى
         const filtered = rawData.improvementActions.filter(item => {
           const matchStage = (item.stage === selectedStage);
           const matchDom = (activeSubFilter === 'الكل' || item.domain === activeSubFilter);
@@ -559,7 +556,6 @@
         const opDoc = getStageDoc('الخطة_التشغيلية');
         const etecDoc = getStageDoc('تقرير_التقويم');
 
-        // 1. البطاقة الرئيسية لوثيقة الخطة التشغيلية الشاملة
         const masterOp = document.createElement('div');
         masterOp.className = "master-plan-card rounded-2xl p-6 text-white shadow-md";
         masterOp.innerHTML = `
@@ -584,7 +580,6 @@
         `;
         container.appendChild(masterOp);
 
-        // 2. السجلات الـ 6 التنفيذية المرتبطة بالخطة التشغيلية ومعيار التخطيط
         const planningRecords = rawData.operationalRecords.filter(r => {
           const isPlanning = (r.standard === 'التخطيط');
           const matchQ = !q || r.recordName.toLowerCase().includes(q) || r.responsible.toLowerCase().includes(q);
@@ -626,7 +621,6 @@
           return;
         }
 
-        // عرض السجلات مقسمة بدقة وفق المعايير الـ 7 الواردة في ملف متابعة الوثائق الرسمي
         OFFICIAL_7_STANDARDS.forEach(stdName => {
           const stdItems = filtered.filter(i => i.standard === stdName);
           if (stdItems.length === 0) return;
@@ -695,7 +689,7 @@
             </span>
             <button
               onclick="openInAppPreview('${safeUrl}', '${safeTitle}')"
-              class="bg-teal-700 hover:bg-teal-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition"
+              class="bg-teal-700 hover:bg-teal-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow-sm"
             >
               استعراض شاهد الإجراء 📄
             </button>
@@ -746,6 +740,10 @@
       `;
     }
 
+    // ==============================================================
+    // العارض الذكي النهائي: يحول المجلدات لعرض (قائمة #list) مباشرة
+    // والملفات المفردة لعرض الشاشة الكاملة (/preview) دون تشتيت
+    // ==============================================================
     function openInAppPreview(url, title) {
       document.getElementById('modal-title').innerText = title;
       document.getElementById('modal-watermark').innerHTML = `مجمع مدارس نعام (1448هـ)<br>${currentUser ? currentUser.name : 'لجنة التقويم الخارجي'}`;
@@ -762,13 +760,17 @@
         iframe.classList.remove('hidden');
 
         let embedUrl = url.trim();
+
+        // فحص صيغة الرابط لمعرفة هل هو ملف (id / file/d) أم مجلد (folders)
         const fileMatch = embedUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || embedUrl.match(/[?&]id=([a-zA-Z0-9_-]+)/);
         const folderMatch = embedUrl.match(/\/folders\/([a-zA-Z0-9_-]+)/);
 
-        if (folderMatch && folderMatch[1]) {
-          embedUrl = `https://drive.google.com/embeddedfolderview?id=${folderMatch[1]}#grid`;
-        } else if (fileMatch && fileMatch[1]) {
+        if (fileMatch && fileMatch[1] && !embedUrl.includes('embeddedfolderview')) {
+          // ملف واحد فقط -> يعرض كملف PDF / صورة كامل الشاشة
           embedUrl = `https://drive.google.com/file/d/${fileMatch[1]}/preview`;
+        } else if (folderMatch && folderMatch[1]) {
+          // مجلد يحتوي على عدة ملفات -> يعرض في قائمة (List View) متراصة لسهولة النقر فوق بعضها
+          embedUrl = `https://drive.google.com/embeddedfolderview?id=${folderMatch[1]}#list`;
         }
 
         iframe.src = embedUrl;
